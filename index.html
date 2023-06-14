@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 
     <style>
         #errMsg {
@@ -29,104 +34,207 @@
         }
     </style>
 </head>
+
 <body>
-    <section class="container-fluid col-lg-8 col-10 shadow-sm mt-lg-5 mt-4 py-2 ">
-        <h1 class="text-danger text-decoration-underline text-center">E-Commerce</h1>
-        <div class="form-foating my-3 ">
-            <input type="text" class="form-control py-2" placeholder="Enter your item" id="productInput">
+    <section class="container-fluid col-lg-8 col-10 shadow-sm mt-lg-5 mt-4 py-2">
+        <h1 class="text-danger text-decoration-underline text-center">
+            E-Commerce
+        </h1>
+        <div class="my-3">
+            <input type="text" class="form-control py-2" placeholder="Enter your item" id="productInput" />
         </div>
-        <div class="form-foating my-3 ">
-            <button class="btn btn-danger w-100" onclick="saveProduct()">Add items</button>
+        <div class="form-foating my-3">
+            <button class="btn btn-danger w-100" onclick="saveProduct()">
+                Add items
+            </button>
         </div>
         <div class="alert alert-danger py-2 text-center" id="errMsg"></div>
     </section>
-    <table id="myTable" class="table striped"></table>
-    <section class="container" style="display: block;">
+    <div class="container-fluid my-4 col-lg-7 col-md-7 col-11">
+        <table id="myTable" class="table striped table-borderd table"></table>
+    </div>
+
+    <section class="container" style="display: block">
         <div class="row">
-            <button class="btn btn-dark col-lg-1 col-5 my-1 mx-auto" onclick="delete_First()">Delete first item</button>
-            <button class="btn btn-success col-lg-1 col-5 my-1 mx-auto " onclick="delete_last()">Delete last item</button>
-            <button class="btn btn-warning col-lg-1 col-5 my-1 mx-auto" onclick="delete_any()">Delete any item(s)</button>
-            <button class="btn btn-info col-lg-1 col-5 my-1 mx-auto" onclick="showModal()">Edit item</button>
-            <button class="btn btn-primary col-lg-1 col-5 my-1 mx-auto" onclick="add_start()">Add item to start</button>
-            <button class="btn btn-secondary col-lg-1 col-5 my-1 mx-auto" onclick="delAll()">Delete all item</button>
+            <button class="btn btn-dark col-lg-1 col-5 my-1 mx-auto" onclick="delete_First()">
+                Delete first item
+            </button>
+            <button class="btn btn-success col-lg-1 col-5 my-1 mx-auto" onclick="delete_last()">
+                Delete last item
+            </button>
+            <button class="btn btn-warning col-lg-1 col-5 my-1 mx-auto" data-bs-toggle="modal"
+                data-bs-target="#exampleModal2">
+                Delete any item(s)
+            </button>
+            <button class="btn btn-info col-lg-1 col-5 my-1 mx-auto" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Edit item
+            </button>
+            <button class="btn btn-primary col-lg-1 col-5 my-1 mx-auto" onclick="add_start()">
+                Add item to start
+            </button>
+            <button class="btn btn-secondary col-lg-1 col-5 my-1 mx-auto" onclick="delAll()">
+                Delete all item
+            </button>
         </div>
     </section>
 
-    <div id="modal" class="p-4">
+    <!-- <div id="modal" class="p-4">
         <h1>Edit modal</h1>
         <input type="text" class="form-control" id="editProductInput" placeholder="Product Name">
         <input type="text" class="form-control" id="editProductIndex" placeholder="Product Index">
         <button class="btn btn-success btn-lg" onclick="editProduct()">Confirm Edit</button>
+    </div> -->
+
+    <!-- Button trigger modal
+<button type="button" class="btn btn-primary" >
+    Launch demo modal
+  </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 MS-5" id="exampleModalLabel">
+                        EDIT ITEM
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="number" class="form-control my-1" placeholder="Enter the number you want to edit"
+                        id="itemToBeDeleted" />
+                    <input type="text" class="form-control my-1" placeholder="Enter your new message"
+                        id="replacedItem" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="editItem()">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-<script>
-    let allProduct = []
-    
-    function saveProduct() {
-        if (productInput.value == "") {
-            errMsg.innerHTML = "Enter product name"
-            errMsg.style.display = "block"
-            productInput.focus()
-        } else {
-            errMsg.style.display = "none"
-            allProduct.push(productInput.value)
-            console.log(allProduct);
-            productInput.value = "";
-            productInput.focus()
 
-            displayProd()
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="number" class="form-control my-1" placeholder="Enter the number you want to edit"
+                        id="itemDeleted" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="delete_any()">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let allProduct = [];
 
+        function saveProduct() {
+            if (productInput.value == "") {
+                errMsg.innerHTML = "Enter product name";
+                errMsg.style.display = "block";
+                productInput.focus();
+            } else {
+                errMsg.style.display = "none";
+                allProduct.push(productInput.value);
+                console.log(allProduct);
+                productInput.value = "";
+                productInput.focus();
+
+                displayProd();
+            }
         }
-    } 
-    function delete_First(){
-        
-        allProduct.shift()
-        displayProd()
-    }
-    function delete_last() {
-        allProduct.pop()
-        displayProd()
-    }
-    function delete_any() {
-        let startIndex = Number(prompt("Enter the starting point"))
-        allProduct.splice(startIndex, 1)
-        displayProd()
-    }
-    function add_start() {
-        let unshiftItem = prompt("Enter the value")
-        allProduct.unshift(unshiftItem)
-        displayProd()
-    }
+        function delete_First() {
+            allProduct.shift();
+            displayProd();
+        }
+        function delete_last() {
+            allProduct.pop();
+            displayProd();
+        }
+        function delete_any() {
+            let deleted = itemDeleted.value;
+            if (itemDeleted.value != "") {
+                if (allProduct.length > deleted - 1) {
+                    allProduct.splice(deleted - 1, 1);
+                    displayProd();
+                } else {
+                    alert("the number dose not exist");
+                }
+            } else {
+                alert("please enter a number");
+            }
+        }
+        function add_start() {
+            let unshiftItem = prompt("Enter the value");
+            allProduct.unshift(unshiftItem);
+            displayProd();
+        }
 
-    function delAll() {
-        allProduct = []
-        displayProd()
-    }
+        function delAll() {
+            let confirmation = confirm("Are you sure you want to delete all");
+            if (confirmation == true) {
+                allProduct = [];
+                displayProd();
+            } else {
+                displayProd();
+            }
+        }
 
-    function showModal() {
-        modal.style.display = "flex"
-    }
+        // function showModal() {
+        //     modal.style.display = "flex"
+        // }
 
-    function editProduct() {
-        allProduct.splice (editProductIndex.value, 1, editProductInput.value)
-        modal.style.display = 'none'
-        displayProd()
-    }
+        // function editProduct() {
+        //     allProduct.splice (editProductIndex.value, 1, editProductInput.value)
+        //     modal.style.display = 'none'
+        //     displayProd()
+        // }
 
+        function editItem() {
+            let newIndex = itemToBeDeleted.value;
+            let newItem = replacedItem.value;
+            if (itemToBeDeleted.value != "" && replacedItem.value != "") {
+                if (allProduct.length > newIndex - 1) {
+                    allProduct.splice(newIndex - 1, 1, newItem);
+                    displayProd();
+                } else {
+                    alert(`index is only ${allProduct.length} long`);
+                }
+            } else {
+                alert(`please fill in the details`);
+            }
+        }
 
+        function displayProd() {
+            let theTable = "";
 
-    function displayProd() {
-        let theTable = ""
-
-        for (let index = 0; index < allProduct.length; index++) {
-            theTable += `<tr >
+            for (let index = 0; index < allProduct.length; index++) {
+                theTable += `<tr >
                 <td style="border: 1px solid gainsboro;">${index + 1}</td>
-                <td style="border: 1px solid gainsboro;">${allProduct[index]}</td>
-                </tr>`
+                <td style="border: 1px solid gainsboro;">${allProduct[index]
+                    }</td>
+                </tr>`;
+            }
+
+            myTable.innerHTML = theTable;
         }
-
-        myTable.innerHTML = theTable
-    }
-
-</script>
+    </script>
 </body>
+
 </html>
