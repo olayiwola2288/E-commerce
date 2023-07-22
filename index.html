@@ -220,19 +220,24 @@
                 alert(`please fill in the details`);
             }
         }
-
         function displayProd() {
             let theTable = "";
 
             for (let index = 0; index < allProduct.length; index++) {
                 theTable += `<tr >
                 <td style="border: 1px solid gainsboro;">${index + 1}</td>
-                <td style="border: 1px solid gainsboro;">${allProduct[index]
-                    }</td>
+                <td style="border: 1px solid gainsboro;">${allProduct[index]}</td>
+                  <td>
+                    <button class"btn btn-warning" onclick"editOne()">Edit</button>
+                    <button class"btn btn-danger" onclick"deleteOne(${index})">delete</button>
+                  </td>
                 </tr>`;
             }
 
             myTable.innerHTML = theTable;
+        }
+        function deleteOne(i) {
+            
         }
     </script>
 </body>
